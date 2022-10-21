@@ -1,6 +1,3 @@
-from re import I
-from unittest import result
-
 from preprocessing import cleaning_data
 from predict import prediction
 
