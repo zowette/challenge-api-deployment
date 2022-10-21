@@ -41,7 +41,25 @@ class Property(BaseModel):
 
 @app.get("/predict")
 async def expecting_format():
-    return {"Please see the schema example to fill the fields."}
+    expected_format = {
+    "area": int,
+    "property_type": "APARTMENT" | "HOUSE" | "OTHERS",
+    "rooms_number": int,
+    "zip_code": int,
+    "land_area": int | None,
+    "garden": bool | None,
+    "garden_area": int | None,
+    "equipped_kitchen": bool | None,
+    "full_address": str | None,
+    "swimming_pool": bool | None,
+    "furnished": bool | None,
+    "open_fire": bool | None,
+    "terrace": bool | None,
+    "terrace_area": int | None,
+    "facades_number": int | None,
+    "building_state": "NEW" | "GOOD" | "TO RENOVATE" | "JUST RENOVATED" | "TO REBUILD" | None
+     }
+    return {"Please see the schema example to fill the fields.", expected_format}
 
 @app.post("/predict", status_code=201)
 async def getting_data(data: Property):
