@@ -33,10 +33,11 @@ python app.py
 # End Points
 
 /(GET):
-GET request and returns an API informations.
+GET request and returns a status of the API.
 
 /predict(GET):
 GET request returning a JSON file which shows the expected user input format.
 
-/predict/data(POST) POST request that receives the data of a house in JSON format.
+/predict/data(POST):
+POST request that receives the data of a house in JSON format.
 
