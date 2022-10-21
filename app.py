@@ -54,16 +54,12 @@ async def expecting_format():
 
 @app.post("/predict/data/", status_code=201)
 async def getting_data(data: Property):
-    
+    data = data.dict()
     df = pd.DataFrame.from_dict(data)
-    df.to_json(r'informations.json')
     
-    oclean = cleaning_data.Cleaning()
-    df_clean = oclean.preprocess()
-
-    opredict = prediction.Prediction()
-    price_predict = opredict.predict()
-    res = dict.fromkeys(['Price prediction'], price_predict)
+    cleaned_df = cleaning_data.preprocess(df)
+    price_predict = prediction.predict(cleaned_df)
+    res = {'Price prediction': price_predict}
 
     return res
 
