@@ -43,7 +43,7 @@ class Property(BaseModel):
 async def expecting_format():
     return {"Please see the schema example to fill the fields."}
 
-@app.post("/predict/data/", status_code=201)
+@app.post("/predict", status_code=201)
 async def getting_data(data: Property):
     df = pd.DataFrame.from_dict(data)  
     cleaned_df = cleaning_data.preprocess(df)
