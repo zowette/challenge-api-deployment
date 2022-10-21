@@ -21,4 +21,4 @@ RUN pip install -r requirements.txt
 # Set port to the env variable PORT to make it easy to choose the port on the servers
 CMD uvicorn app:app --host 0.0.0.0 --port $PORT
 
-CMD ["python", "app.py"]
+# CMD ["python", "app.py"]
