@@ -1,4 +1,6 @@
-FROM python:3.10.4
+FROM python:3.10
+
+ARG PORT=5000
 
 RUN mkdir  /app
 

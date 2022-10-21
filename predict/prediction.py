@@ -26,10 +26,11 @@ def predict(cleaned_df):
     state_of_the_building = df["state_of_the_building"].values[0]
     zip_code_ratio = df["zip_code_ratio"].values[0]
     
-    property_type = df["property_type"].values[0]        
+    property_type = df["property_type"].values[0]     
+    print(df)
     
     
-    if property_type == "HOUSE":
+    if property_type == "property_type.HOUSE":
         x_house = df
         
         atributes_house=['property_type',
@@ -54,10 +55,12 @@ def predict(cleaned_df):
         x_house = scaler_house.transform(x_house)        
         x_house_poly = poly_features_house.fit_transform(x_house)
         y_house_predict = model_house.predict(x_house_poly)
-        price_predict = round((int(y_house_predict)), -3)                        
+        price_predict = round((int(y_house_predict)), -3)
+        
+        return price_predict                        
         
     
-    elif property_type == 'APARTMENT':
+    elif property_type == 'property_type.APARTMENT':
         x_apartment = df
                                 
         atributes_apartment=['property_type',
@@ -84,7 +87,7 @@ def predict(cleaned_df):
         y_apartment_predict = model_apartment.predict(x_apartment_poly)
         price_predict = round((int(y_apartment_predict)), -3)
                 
-    return price_predict
+        return price_predict
         
         
         
