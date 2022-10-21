@@ -1,0 +1,73 @@
+from re import I
+from unittest import result
+
+from preprocessing import cleaning_data
+from predict import prediction
+
+from fastapi import FastAPI
+from pydantic import BaseModel
+import json
+from enum import Enum
+# from flask import request, jsonify
+from typing import Optional, Union
+# import jsonpickle
+
+import pandas as pd
+
+
+app = FastAPI()
+
+@app.get("/")
+async def root():
+    return {'Alive'}
+
+class property_type(str, Enum):
+        HOUSE = "HOUSE"
+        APARTMENT = "APARTMENT"
+    
+class building_state(str, Enum):
+        NEW = "NEW" 
+        GOOD = "GOOD" 
+        TO_RENOVATE = "TO RENOVATE"
+        JUST_RENOVATED = "JUST RENOVATED" 
+        TO_REBUILD = "TO REBUILD"
+    
+class Property(BaseModel):
+    area: int
+    property_type: property_type
+    rooms_number: int
+    zip_code: int
+    land_area: Optional[int] | None = None
+    garden: Optional[bool] | None = None
+    garden_area: Optional[int] | None = None
+    equipped_kitchen: bool | None = None 
+    full_address: Optional[str] | None = None
+    swimming_pool: bool
+    furnished: Optional[bool] | None = None
+    open_fire: bool
+    terrace: bool
+    terrace_area: int
+    facades_number: int
+    building_state: building_state
+ 
+
+@app.get("/predict")
+async def expecting_format():
+    return {"Please see the schema example to fill the fields."}
+
+@app.post("/predict/data/", status_code=201)
+async def getting_data(data: Property):
+    
+    df = pd.DataFrame.from_dict(data)
+    df.to_json(r'informations.json')
+    
+    oclean = cleaning_data.Cleaning()
+    df_clean = oclean.preprocess()
+
+    opredict = prediction.Prediction()
+    price_predict = opredict.predict()
+    res = dict.fromkeys(['Price prediction'], price_predict)
+
+    return res
+
+
