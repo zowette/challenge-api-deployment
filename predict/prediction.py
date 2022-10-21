@@ -15,21 +15,8 @@ model_apartment = pickle.load(open('model/finalized_model_apartment.pkl', 'rb'))
 def predict(cleaned_df):
     
     df = cleaned_df
-    number_of_bedrooms = df["number_of_bedrooms"].values[0]
-    surface = df["surface"].values[0]
-    fully_equipped_kitchen = df["fully_equipped_kitchen"].values[0]
-    open_fire = df["open_fire"].values[0]
-    number_of_facades = df["number_of_facades"].values[0]
-    terrace = df["terrace"].values[0]
-    terrace_surface = df["terrace_surface"].values[0]
-    swimming_pool = df["swimming_pool"].values[0]
-    state_of_the_building = df["state_of_the_building"].values[0]
-    zip_code_ratio = df["zip_code_ratio"].values[0]
-    
     property_type = df["property_type"].values[0]     
-    print(df)
-    
-    
+      
     if property_type == "property_type.HOUSE":
         x_house = df
         

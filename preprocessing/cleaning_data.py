@@ -2,7 +2,6 @@ import pandas as pd
                 
 def preprocess(df):
     
-    print(df)
     number_of_bedrooms = (int(df.loc[df[0] == "rooms_number"][1].values[0]))
     surface = (int(df.loc[df[0] == "area"][1].values[0]))
     fully_equipped_kitchen = (bool(df.loc[df[0] == "equipped_kitchen"][1].values[0]))
@@ -13,10 +12,7 @@ def preprocess(df):
     swimming_pool = (bool(df.loc[df[0] == "swimming_pool"][1].values[0]))
     state_of_the_building = (str(df.loc[df[0] == "building_state"][1].values[0]))
     zip_code_ratio = (int(df.loc[df[0] == "zip_code"][1].values[0]))
-    property_type = (str(df.loc[df[0] == "property_type"][1].values[0]))
-    
-    print(property_type)
-    
+    property_type = (str(df.loc[df[0] == "property_type"][1].values[0]))   
     
     if fully_equipped_kitchen == True:
         fully_equipped_kitchen = 1
