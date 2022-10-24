@@ -4,6 +4,8 @@ This API provides predictions from a machine learning model for the real estates
 
 The program was written in Python 3.10 and deployed in Render in order to be used by web-devolopers to create website around it.
 
+https://belgium-real-estates-prediction-price-by.onrender.com/
+
 # Project Guidelines
 
 Repository: challenge-api-deployment
